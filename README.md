@@ -1,2 +1,3 @@
 # DreamyScriptH-Docs
-DreamyScriptH Documentation for DMWR
+## DSCRH Version: 0.4.5.0
+
