@@ -204,8 +204,8 @@ UI::NewWindow("Speed Meter", 200, 100)
     
     if "speed" > 250
     {
-        UI::Text("Bhop Master!");
-        OverlayUI::Text("GOD SPEED", "top");
+        UI::Text("Ambas");
+        OverlayUI::Text("ĆŚŚŚŚ", "top");
     };
 };
 ```
