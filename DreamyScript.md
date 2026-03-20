@@ -52,14 +52,14 @@ Commands used inside `UI::NewWindow` blocks to create interactive menus.
 
 **Examples:**
 ```
-// Simple static UI
+** Simple static UI
 UI::NewWindow("Status", 200, 50) {
     UI::Text("System Online");
     UI::Line;
 };
 ```
 ```
-// Interactive UI with Logic
+** Interactive UI with Logic
 UI::Checkbox("Show Stats", showp);
 if showp == 1 {
     UI::SliderInt("Scale", uiscale, 1, 100);
@@ -89,12 +89,12 @@ Commands for reading game data using protected direct syscalls.
 
 **Examples:**
 ```
-// Reading for display
+** Reading for display
 Mem::Read(local, Velocity, speed);
 UI::Value("Current Speed", speed);
 ```
 ```
-// Reading for 3D logic
+** Reading for 3D logic
 Mem::Read(local, EntityPosition, my_feet);
 Mem::Read(local, HeadPos, my_head);
 ```
@@ -117,10 +117,10 @@ Commands for drawing 2D text and 3D projected shapes on the screen.
 
 **Examples:**
 ```
-// 2D Text
+** 2D Text
 OverlayUI::Text("DMW SCRIPT LOADED", bottom);
 
-// 3D ESP Box
+** 3D ESP Box
 Mem::Read(Enemy, EntityPosition, f);
 Mem::Read(Enemy, HeadPos, h);
 OverlayShape::Square(f, h);
@@ -137,14 +137,14 @@ Arithmetic operations and conditional execution.
 
 **Examples:**
 ```
-// Calculation via Button
+** Calculation via Button
 systemvoid::calc {
     Math::Op(a, +, b, sum);
 }
 UI::Button("Calculate Summer", systemvoid::calc);
 ```
 ```
-// Logic check
+** Logic check
 if v > 300 {
     OverlayUI::Text("SPEED LIMIT EXCEEDED", middle);
 };
@@ -158,7 +158,7 @@ Structure and visual customization.
 
 **Examples:**
 ```
-// Multiple Math ops
+** Multiple Math ops
 systemvoid::complex {
     Math::Op(x, *, 2, x);
     Math::Op(x, +, 10, final_x);
