@@ -69,7 +69,7 @@ if showp == 1 {
 ----------------------------------------
 SECTION: MEMORY
 ----------------------------------------
-Commands for reading game data using protected direct syscalls.
+Commands for reading game data.
 - `Mem::Read(scope, Field, var)` : Reads game data into a variable.
   - Supported scopes: `local` / `Local`, `Enemy`, `Teammates`.
     - `Enemy`: Reads from the first valid enemy found in the game.
@@ -185,7 +185,7 @@ ForEach::Enemy
 ----------------------------------------
 SECTION: CUSTOMIZATION & THEMES
 ----------------------------------------
-Use `MenuAccent` to customize your cheat's appearance.
+Use `MenuAccent` to customize your script's appearance.
 
 ```
 MenuAccent {
