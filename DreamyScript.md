@@ -27,6 +27,7 @@ SECTION: CORE
 Basic configuration for the script environment.
 - `Open::Keybind(KEY)` : Sets the toggle key for the script menu.
   - Supported keys: `F1`, `F2`, `F3`, `F4`, `F5`, `HOME`, `INS`.
+  - *Quotes are optional* (e.g., `Open::Keybind(F2);` or `Open::Keybind("F2");`).
 
 **Examples:**
 ```
@@ -230,29 +231,80 @@ DrawKeyBoardLayout::WSADSPACE;
 ```
 
 ----------------------------------------
+SECTION: MOUSE OVERLAY
+----------------------------------------
+Displays a mouse layout on screen that highlights buttons when pressed.
+- `MouseAccent { ... }` : Customizes the mouse appearance.
+    - `scale(value)` : Size multiplier (e.g., 1.5).
+    - `pos(x, y)` : Screen coordinates.
+    - `outline(r, g, b, a)` : Default color for the mouse frame.
+    - `clicked(r, g, b, a)` : Highlight color when buttons are pressed.
+    - `rounding(value)` : Corner rounding for the mouse body.
+- `DrawMouseLayout::FULL` : Draws the complete mouse layout (LMB, RMB, MMB/Wheel).
+
+**Example:**
+```
+MouseAccent {
+    scale(1.5);
+    pos(500, 1000);
+    outline(255, 255, 255, 120);
+    clicked(0, 200, 255, 255);
+    rounding(50.0);
+}
+DrawMouseLayout::FULL;
+```
+
+----------------------------------------
 SECTION: SYNTAX INFO
 ----------------------------------------
 > [!IMPORTANT]
 > **New Syntax**: Quotes `""` are now optional for internal variables and commands, but are **REQUIRED for text/titles** for stability.
 
+
 ----------------------------------------
-EXAMPLE SCRIPT (New Syntax)
+EXAMPLE 1: Calculator (Multiplication)
 ----------------------------------------
 ```
-** @author DreamyUser
-Open::Keybind(F1);
+** @author Sepeix
+** Simple Multiplier
+systemvoid::multiply {
+    Math::Op(num1, *, num2, result);
+}
 
-UI::NewWindow("Telemetry", 200, 150)
+UI::NewWindow("Calculator", 200, 150) {
+    UI::InputInt("Number 1", num1);
+    UI::InputInt("Number 2", num2);
+    UI::Button("Multiply", systemvoid::multiply);
+    UI::Line;
+    UI::Value("Result", result);
+};
+```
+
+
+----------------------------------------
+EXAMPLE 2: FULL HUD (Keyboard & Mouse Viewer)
+----------------------------------------
+```
+** @author Sepeix
+Open::Keybind(F2);
+
+MouseAccent {
+    scale(1.5);
+    pos(500, 1000);
+    outline(255, 255, 255, 120);
+    clicked(0, 200, 255, 255);
+    rounding(50.0);
+}
+KeyboardAccent {
+    scale(1.5);         
+    pos(200, 1000);        
+    outline(255, 255, 255, 120); 
+    clicked(0, 200, 255, 255);  
+    rounding(10.0);       
+}
+DrawMouseLayout::FULL;
+DrawKeyBoardLayout::WSADSPACE;
+UI::NewWindow("Mouse Viewer Config", 200, 80)
 {
-    Mem::Read(local, Velocity, p_speed);
-    UI::Value("Velocity Unit", p_speed);
-    
-    if p_speed > 250
-    {
-        UI::Text("STATUS_VELOCITY_HIGH");
-        OverlayUI::Text("UNIT_LIMIT_EXCEEDED", top);
-    };
-
-    DrawKeyBoardLayout::WSAD;
 };
 ```
